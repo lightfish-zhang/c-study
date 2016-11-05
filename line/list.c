@@ -165,7 +165,7 @@ void list_delete_node(PNODE * ppHead , int index)
         return;
     }
     PNODE pHead = *ppHead;
-    if(1 == index && NULL == pHead->pNext){
+    if(0 == index && NULL == pHead->pNext){
         free(pHead);
         *ppHead = NULL;
         return;
