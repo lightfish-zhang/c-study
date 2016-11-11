@@ -1,5 +1,11 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "queue.h"
+
+void bye()
+{
+    printf("bye\n");
+}
 
 int main(int argc , char * argv[])
 {
@@ -44,5 +50,7 @@ int main(int argc , char * argv[])
         }
 
     }while(0!=key);
+
+    atexit(&bye);
     return 0;
 }
