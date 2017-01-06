@@ -2,66 +2,64 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+Node * splaytree_splay(SplayTree tree, Type key)
+{
+  Node N, *l, *r, *c;
 
-SplayTree splaytree_splay( SplayTree tree, keyType key ){
-
-  SplayTreeNode Node, * left, * right, * current;
-
-  if( NULL == tree )
+  if(NULL == tree)
     return tree;
 
-  Node.left = NULL;
-  Node.right = NULL;
-  left = &Node;
-  right = &Node;
+  N.left = N.right = NULL;
+  l = r = &N;
 
   while(1){
-
-    if( key < tree->key ){
-
-      if( NULL == tree->left )
+    if(key < tree->key)
+    {
+      if(NULL == tree->left)
         break;
 
-      if( key < tree->left->key ){
-        current = tree->left;
-        tree->left = tree->left->right;
-        current->right = tree;
-        tree = current;
-          if( NULL == tree->left )
-            break;
-      }
-
-      right->left = tree;
-      right = tree;
-      tree = tree->left;
-
-    }else if( key > tree->right ){
-
-      if( NULL == tree->right )
-        break;
-
-      if( key > tree->right->key ){
-        current = tree->right;
-        tree->right = current->left;
-        current->left = tree;
-        tree = current;
-
-        if( NULL == tree->right )
+      if(key < tree->left->key)
+      {
+        c = tree->left;
+        tree->left = c->right;
+        c->right = tree;
+        tree = c;
+        if(NULL == tree->left)
           break;
       }
 
-      left->right = tree;
-      left = tree;
-      tree = tree->right;
+      r->left = tree;
+      r = tree;
+      tree = tree->left;
 
-    }else
+    }
+    else if(key > tree->key)
+    {
+      if(NULL == tree->right)
+        break;
+
+      if(key > tree->right->key)
+      {
+        c = tree->right;
+        tree->right = c->tree;
+        c->left = tree;
+        tree = c;
+        if(NULL == tree->right)
+          break;
+      }
+
+      l->right = tree;
+      l = tree;
+      tree = tree->right;
+    }
+    else
       break;
   }
 
-  left->right = tree->left;
-  right->left = tree->right;
-  tree->left = Node.right;
-  tree->right = Node.left;
+  l->right = tree->left;
+  r->left = tree->right;
+  tree->left = N.right;
+  tree->right = N.left;
 
   return tree;
 }

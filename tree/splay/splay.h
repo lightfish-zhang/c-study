@@ -1,7 +1,7 @@
-typedef int keyType;
+typedef int Type;
 
-typedef struct SplayTreeNode{
-  keyType key;
-  struct SplayTreeNode * left;
-  struct SplayTreeNode * right;
-} SplayTreeNode, * SplayTree;
+typedef struct SplayTreeNode {
+    Type key;
+    struct SplayTreeNode *left;
+    struct SplayTreeNode *right;
+} Node, *SplayTree;
